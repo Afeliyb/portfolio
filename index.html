@@ -848,6 +848,55 @@
         gap: 36px;
         flex-wrap: wrap;
       }
+
+      /* ====== FORMULAIRE CONTACT ====== */
+      .contact-form {
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .contact-form .form-group {
+        width: 100%;
+      }
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 14px 18px;
+        font-size: 14px;
+        font-family: "DM Sans", sans-serif;
+        color: #fff;
+        outline: none;
+        transition: border-color 0.22s;
+        resize: vertical;
+      }
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: #4ade80;
+      }
+      .contact-form button[type="submit"] {
+        align-self: center;
+        cursor: pointer;
+        border: none;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* Responsive formulaire */
+      @media (max-width: 860px) {
+        .contact-form {
+          max-width: 100%;
+        }
+      }
       .clink {
         display: flex;
         align-items: center;
@@ -1067,7 +1116,7 @@
       <!-- Bottom left: headline -->
       <div class="hero-bottom-left r">
         <h1 class="hero-headline">
-          Afeli construit des<br />
+          Je construit des<br />
           solutions <em>digitales</em><br />
           pour l'Afrique.
         </h1>
@@ -1081,6 +1130,7 @@
         </p>
         <div class="hero-ctas">
           <a href="#contact" class="btn-dark">Me contacter</a>
+          <a href="cv.pdf" target="_blank" class="btn-outline">Voir mon CV &darr;</a>
           <a href="#projects" class="btn-outline">Projets &darr;</a>
         </div>
       </div>
@@ -1593,6 +1643,51 @@
               >GitHub &rarr;</a
             >
           </div>
+
+          <!-- Formulaire de contact -->
+          <form
+            action="https://formsubmit.co/afelibienvenu@gmail.com"
+            method="POST"
+            class="contact-form r rd2"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nouveau message depuis le portfolio de Afeli"
+            />
+            <input
+              type="hidden"
+              name="_autoresponse"
+              value="Merci pour votre message ! Je vous répondrai dans les plus brefs délais. — Afeli Yao Bienvenu"
+            />
+            <input
+              type="hidden"
+              name="_next"
+              value="https://afeliyb.github.io/portfolio/"
+            />
+
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Votre email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                name="message"
+                placeholder="Votre message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-green">Envoyer &rarr;</button>
+          </form>
+
           <div class="contact-row r rd2">
             <a href="mailto:afelibienvenu@gmail.com" class="clink"
               ><span class="clink-dot"></span>afelibienvenu@gmail.com</a
