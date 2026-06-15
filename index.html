@@ -342,7 +342,7 @@
         height: 50px;
         background: var(--muted);
         opacity: 0.6;
-        animation: scrollline 1.4s ease-in-out infinite;
+        animation: scrollline 1.8s ease-in-out infinite;
       }
       @keyframes scrollline {
         0% {
@@ -1757,10 +1757,7 @@
       const obs = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("v");
-              obs.unobserve(e.target);
-            }
+            e.target.classList.toggle("v", e.isIntersecting);
           });
         },
         { threshold: 0.1 },
