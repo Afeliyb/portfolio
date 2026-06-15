@@ -316,6 +316,56 @@
         transition: all 0.22s;
         font-family: "DM Sans", sans-serif;
       }
+
+      /* ====== HERO CTAs — Alignement horizontal complet (Bouton 3 visible) ====== */
+@media (min-width: 861px) {
+  
+  .hero-ctas {
+    display: flex !important;
+    flex-direction: row !important;   /* Aligne de gauche à droite */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;             /* Espace optimal entre les capsules */
+    
+    position: relative !important;
+    width: max-content !important;    /* S'adapte au contenu */
+    margin-top: 35px !important;      /* Espace sous ton texte */
+    
+    /* Décale tout le bloc vers la gauche pour faire revenir le 3ème bouton dans l'écran */
+    margin-left: -90px !important;   
+    
+    /* Force les boutons à passer AU-DESSUS de la photo s'ils se croisent */
+    z-index: 999 !important;          
+  }
+
+  .hero-ctas > * {
+    /* Largeur intelligente : s'adapte au texte (ex: "Projets" sera plus petit que "Télécharger mon CV") 
+       ce qui gagne énormément de place pour éviter que ça sorte de l'écran */
+    width: auto !important;
+    min-width: 135px !important;
+    height: 48px !important;
+    
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 0 22px !important;       /* Donne la belle forme allongée */
+    margin: 0 !important;
+    white-space: nowrap !important;   /* Empêche le texte de sauter à la ligne */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Style pour le bouton blanc/outline */
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+    color: #000 !important;
+  }
+}
+    
       .btn-outline:hover {
         border-color: var(--black);
       }
