@@ -1131,9 +1131,73 @@
           text-align: center;
         }
       }
-    </style>
+    
+    /* --- CUSTOM CURSOR STYLES --- */
+    @media (pointer: fine) {
+      body, a, button, .pcard, .pcard-img {
+        cursor: none !important;
+      }
+      
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 12px; /* Taille de la boule au départ */
+        height: 12px;
+        background-color: #ffffff; /* On la met blanche de base... */
+        
+        /* MAGIE : S'adapte à l'environnement. Devient noire sur fond blanc, 
+           et blanche sur fond noir automatiquement sans aucune ligne de JS ! */
+        mix-blend-mode: difference; 
+        
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 999999;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                    height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Quand elle touche un projet : la boule noire/blanche s'agrandit */
+      .custom-cursor.hover-project {
+        width: 65px;
+        height: 65px;
+      }
+      
+      /* La flèche style Framer à l'intérieur */
+      .custom-cursor::after {
+        content: "↗";
+        color: #000000; /* Sa couleur va aussi s'inverser pour être parfaitement visible */
+        font-size: 24px;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-weight: 300;
+        opacity: 0;
+        transform: scale(0) rotate(-10deg);
+        transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        position: absolute;
+      }
+      
+      /* Fait apparaître la flèche au survol du projet */
+      .custom-cursor.hover-project::after {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      
+      /* Quand elle touche un lien ou un bouton classique : léger effet de loupe */
+      .custom-cursor.hover-link {
+        transform: translate(-50%, -50%) scale(1.8);
+      }
+    }
+    /* ---------------------------- */
+    
+</style>
   </head>
   <body>
+    <div class="custom-cursor" id="custom-cursor"></div>
+
     <nav id="nav">
       <a href="#" class="nav-logo">AFELI Yao Bienvenu</a>
       <ul class="nav-links">
@@ -1638,79 +1702,8 @@
       </div>
     </section>
 
-    <!-- CERTIFICATIONS -->
-    <section class="section" id="certifications">
-      <div class="container">
-        <span class="section-label r">Certifications</span>
-        <h2 class="section-title r">Reconnaissances <em>officielles</em></h2>
-        <div class="certs-grid">
-          <div class="cert r">
-            <div class="cert-icon" style="background: #0b5394">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="white"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"
-                  stroke="white"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-            <div class="cert-name">Cisco Certified Network Associate</div>
-            <div class="cert-from">CCNA — Cisco Systems</div>
-          </div>
-          <div class="cert r rd1">
-            <div class="cert-icon" style="background: #00a4ef">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="8" height="8" fill="white" />
-                <rect
-                  x="13"
-                  y="3"
-                  width="8"
-                  height="8"
-                  fill="white"
-                  opacity="0.6"
-                />
-                <rect
-                  x="3"
-                  y="13"
-                  width="8"
-                  height="8"
-                  fill="white"
-                  opacity="0.6"
-                />
-                <rect x="13" y="13" width="8" height="8" fill="white" />
-              </svg>
-            </div>
-            <div class="cert-name">Microsoft Fundamentals</div>
-            <div class="cert-from">Microsoft</div>
-          </div>
-          <div class="cert r rd2">
-            <div class="cert-icon" style="background: #3b1f6b">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                  stroke="white"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <div class="cert-name">Prompt Engineering</div>
-            <div class="cert-from">DeepLearning.AI</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <div class="divider"></div>
-
+    
     <!-- CONTACT -->
     <section class="contact-section" id="contact">
       <div class="container">
@@ -1828,6 +1821,62 @@
         });
         photo.style.opacity = "1";
       }, 80);
-    </script>
+    
+    // --- CUSTOM CURSOR LOGIC ---
+    const cursor = document.getElementById("custom-cursor");
+    if (cursor) {
+      let mouseX = 0;
+      let mouseY = 0;
+      let cursorX = 0;
+      let cursorY = 0;
+
+      // Follow mouse
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // On first move, snap to position to avoid visual jump
+        if(cursorX === 0 && cursorY === 0) {
+            cursorX = mouseX;
+            cursorY = mouseY;
+        }
+      });
+
+      // Smooth animation using requestAnimationFrame
+      const animateCursor = () => {
+        // Linear interpolation for smooth trailing
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+        
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+        
+        requestAnimationFrame(animateCursor);
+      };
+      animateCursor();
+
+      // Hover effects for projects
+      const projectCards = document.querySelectorAll(".pcard, .pcard-img");
+      projectCards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+          cursor.classList.add("hover-project");
+        });
+        card.addEventListener("mouseleave", () => {
+          cursor.classList.remove("hover-project");
+        });
+      });
+
+      // Hover effects for other links/buttons
+      const interactiveElements = document.querySelectorAll("a:not(.pcard):not(.pcard-img), button");
+      interactiveElements.forEach(el => {
+        el.addEventListener("mouseenter", () => {
+          cursor.classList.add("hover-link");
+        });
+        el.addEventListener("mouseleave", () => {
+          cursor.classList.remove("hover-link");
+        });
+      });
+    }
+    // ----------------------------
+</script>
   </body>
 </html>
