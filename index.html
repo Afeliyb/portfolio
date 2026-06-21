@@ -318,54 +318,53 @@
       }
 
       /* ====== HERO CTAs — Alignement horizontal complet (Bouton 3 visible) ====== */
-@media (min-width: 861px) {
-  
-  .hero-ctas {
-    display: flex !important;
-    flex-direction: row !important;   /* Aligne de gauche à droite */
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;             /* Espace optimal entre les capsules */
-    
-    position: relative !important;
-    width: max-content !important;    /* S'adapte au contenu */
-    margin-top: 35px !important;      /* Espace sous ton texte */
-    
-    /* Décale tout le bloc vers la gauche pour faire revenir le 3ème bouton dans l'écran */
-    margin-left: -90px !important;   
-    
-    /* Force les boutons à passer AU-DESSUS de la photo s'ils se croisent */
-    z-index: 999 !important;          
-  }
+      @media (min-width: 861px) {
+        .hero-ctas {
+          display: flex !important;
+          flex-direction: row !important; /* Aligne de gauche à droite */
+          align-items: center !important;
+          justify-content: flex-start !important;
+          gap: 12px !important; /* Espace optimal entre les capsules */
 
-  .hero-ctas > * {
-    /* Largeur intelligente : s'adapte au texte (ex: "Projets" sera plus petit que "Télécharger mon CV") 
+          position: relative !important;
+          width: max-content !important; /* S'adapte au contenu */
+          margin-top: 35px !important; /* Espace sous ton texte */
+
+          /* Décale tout le bloc vers la gauche pour faire revenir le 3ème bouton dans l'écran */
+          margin-left: -90px !important;
+
+          /* Force les boutons à passer AU-DESSUS de la photo s'ils se croisent */
+          z-index: 999 !important;
+        }
+
+        .hero-ctas > * {
+          /* Largeur intelligente : s'adapte au texte (ex: "Projets" sera plus petit que "Télécharger mon CV") 
        ce qui gagne énormément de place pour éviter que ça sorte de l'écran */
-    width: auto !important;
-    min-width: 135px !important;
-    height: 48px !important;
-    
-    border-radius: 999px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-    padding: 0 22px !important;       /* Donne la belle forme allongée */
-    margin: 0 !important;
-    white-space: nowrap !important;   /* Empêche le texte de sauter à la ligne */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  }
+          width: auto !important;
+          min-width: 135px !important;
+          height: 48px !important;
 
-  /* Style pour le bouton blanc/outline */
-  .btn-outline {
-    background: rgba(255, 255, 255, 0.88) !important;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
-    color: #000 !important;
-  }
-}
-    
+          border-radius: 999px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-sizing: border-box !important;
+          padding: 0 22px !important; /* Donne la belle forme allongée */
+          margin: 0 !important;
+          white-space: nowrap !important; /* Empêche le texte de sauter à la ligne */
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Style pour le bouton blanc/outline */
+        .btn-outline {
+          background: rgba(255, 255, 255, 0.88) !important;
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+          color: #000 !important;
+        }
+      }
+
       .btn-outline:hover {
         border-color: var(--black);
       }
@@ -1131,69 +1130,78 @@
           text-align: center;
         }
       }
-    
-    /* --- CUSTOM CURSOR STYLES --- */
-    @media (pointer: fine) {
-      body, a, button, .pcard, .pcard-img {
-        cursor: none !important;
-      }
-      
-      .custom-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 12px; /* Taille de la boule au départ */
-        height: 12px;
-        background-color: #ffffff; /* On la met blanche de base... */
-        
-        /* MAGIE : S'adapte à l'environnement. Devient noire sur fond blanc, 
+
+      /* --- CUSTOM CURSOR STYLES --- */
+      @media (pointer: fine) {
+        body,
+        a,
+        button,
+        .pcard,
+        .pcard-img {
+          cursor: none !important;
+        }
+
+        .custom-cursor {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 12px; /* Taille de la boule au départ */
+          height: 12px;
+          background-color: #ffffff; /* On la met blanche de base... */
+
+          /* MAGIE : S'adapte à l'environnement. Devient noire sur fond blanc, 
            et blanche sur fond noir automatiquement sans aucune ligne de JS ! */
-        mix-blend-mode: difference; 
-        
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 999999;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-                    height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+          mix-blend-mode: difference;
+
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 999999;
+          transform: translate(-50%, -50%);
+          transition:
+            width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+            height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Quand elle touche un projet : la boule noire/blanche s'agrandit */
+        .custom-cursor.hover-project {
+          width: 65px;
+          height: 65px;
+        }
+
+        /* La flèche style Framer à l'intérieur */
+        .custom-cursor::after {
+          content: "↗";
+          color: #000000; /* Sa couleur va aussi s'inverser pour être parfaitement visible */
+          font-size: 24px;
+          font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+          font-weight: 300;
+          opacity: 0;
+          transform: scale(0) rotate(-10deg);
+          transition:
+            opacity 0.2s ease,
+            transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+          position: absolute;
+        }
+
+        /* Fait apparaître la flèche au survol du projet */
+        .custom-cursor.hover-project::after {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+        }
+
+        /* Quand elle touche un lien ou un bouton classique : léger effet de loupe */
+        .custom-cursor.hover-link {
+          transform: translate(-50%, -50%) scale(1.8);
+        }
       }
-      
-      /* Quand elle touche un projet : la boule noire/blanche s'agrandit */
-      .custom-cursor.hover-project {
-        width: 65px;
-        height: 65px;
-      }
-      
-      /* La flèche style Framer à l'intérieur */
-      .custom-cursor::after {
-        content: "↗";
-        color: #000000; /* Sa couleur va aussi s'inverser pour être parfaitement visible */
-        font-size: 24px;
-        font-family: system-ui, -apple-system, sans-serif;
-        font-weight: 300;
-        opacity: 0;
-        transform: scale(0) rotate(-10deg);
-        transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        position: absolute;
-      }
-      
-      /* Fait apparaître la flèche au survol du projet */
-      .custom-cursor.hover-project::after {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-      
-      /* Quand elle touche un lien ou un bouton classique : léger effet de loupe */
-      .custom-cursor.hover-link {
-        transform: translate(-50%, -50%) scale(1.8);
-      }
-    }
-    /* ---------------------------- */
-    
-</style>
+      /* ---------------------------- */
+    </style>
   </head>
   <body>
     <div class="custom-cursor" id="custom-cursor"></div>
@@ -1702,8 +1710,6 @@
       </div>
     </section>
 
-
-    
     <!-- CONTACT -->
     <section class="contact-section" id="contact">
       <div class="container">
@@ -1821,62 +1827,64 @@
         });
         photo.style.opacity = "1";
       }, 80);
-    
-    // --- CUSTOM CURSOR LOGIC ---
-    const cursor = document.getElementById("custom-cursor");
-    if (cursor) {
-      let mouseX = 0;
-      let mouseY = 0;
-      let cursorX = 0;
-      let cursorY = 0;
 
-      // Follow mouse
-      window.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        // On first move, snap to position to avoid visual jump
-        if(cursorX === 0 && cursorY === 0) {
+      // --- CUSTOM CURSOR LOGIC ---
+      const cursor = document.getElementById("custom-cursor");
+      if (cursor) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        // Follow mouse
+        window.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          // On first move, snap to position to avoid visual jump
+          if (cursorX === 0 && cursorY === 0) {
             cursorX = mouseX;
             cursorY = mouseY;
-        }
-      });
+          }
+        });
 
-      // Smooth animation using requestAnimationFrame
-      const animateCursor = () => {
-        // Linear interpolation for smooth trailing
-        cursorX += (mouseX - cursorX) * 0.2;
-        cursorY += (mouseY - cursorY) * 0.2;
-        
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        
-        requestAnimationFrame(animateCursor);
-      };
-      animateCursor();
+        // Smooth animation using requestAnimationFrame
+        const animateCursor = () => {
+          // Linear interpolation for smooth trailing
+          cursorX += (mouseX - cursorX) * 0.2;
+          cursorY += (mouseY - cursorY) * 0.2;
 
-      // Hover effects for projects
-      const projectCards = document.querySelectorAll(".pcard, .pcard-img");
-      projectCards.forEach(card => {
-        card.addEventListener("mouseenter", () => {
-          cursor.classList.add("hover-project");
-        });
-        card.addEventListener("mouseleave", () => {
-          cursor.classList.remove("hover-project");
-        });
-      });
+          cursor.style.left = `${cursorX}px`;
+          cursor.style.top = `${cursorY}px`;
 
-      // Hover effects for other links/buttons
-      const interactiveElements = document.querySelectorAll("a:not(.pcard):not(.pcard-img), button");
-      interactiveElements.forEach(el => {
-        el.addEventListener("mouseenter", () => {
-          cursor.classList.add("hover-link");
+          requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+
+        // Hover effects for projects
+        const projectCards = document.querySelectorAll(".pcard, .pcard-img");
+        projectCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            cursor.classList.add("hover-project");
+          });
+          card.addEventListener("mouseleave", () => {
+            cursor.classList.remove("hover-project");
+          });
         });
-        el.addEventListener("mouseleave", () => {
-          cursor.classList.remove("hover-link");
+
+        // Hover effects for other links/buttons
+        const interactiveElements = document.querySelectorAll(
+          "a:not(.pcard):not(.pcard-img), button",
+        );
+        interactiveElements.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursor.classList.add("hover-link");
+          });
+          el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("hover-link");
+          });
         });
-      });
-    }
-    // ----------------------------
-</script>
+      }
+      // ----------------------------
+    </script>
   </body>
 </html>
