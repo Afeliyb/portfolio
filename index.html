@@ -137,46 +137,62 @@
       }
 
       /* ====== HERO — Michael Carter style ====== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: var(--white); /* Pense à mettre ta variable de fond dynamique ici pour le mode sombre ! */
-  display: flex;
-  align-items: flex-end;
-}
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: var(
+          --white
+        ); /* Pense à mettre ta variable de fond dynamique ici pour le mode sombre ! */
+        display: flex;
+        align-items: flex-end;
+      }
 
-/* Le conteneur (nettoyé de ses ::before et ::after) */
-.hero-photo-block {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: 460px;
-  max-width: 55%;
-  z-index: 1;
-  pointer-events: none;
-}
+      /* Le conteneur (nettoyé de ses ::before et ::after) */
+      .hero-photo-block {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        width: 460px;
+        max-width: 55%;
+        z-index: 1;
+        pointer-events: none;
+      }
 
-/* C'est ICI qu'on applique le masque magique */
-.hero-photo-block img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+      /* C'est ICI qu'on applique le masque magique */
+      .hero-photo-block img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
 
-  /* Rend les pixels transparents sur les bords (gauche, droite, bas) */
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%),
-                      linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to top, transparent 0%, black 15%),
-              linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
+        /* Rend les pixels transparents sur les bords (gauche, droite, bas) */
+        -webkit-mask-image:
+          linear-gradient(to top, transparent 0%, black 15%),
+          linear-gradient(
+            to right,
+            transparent 0%,
+            black 12%,
+            black 88%,
+            transparent 100%
+          );
+        mask-image:
+          linear-gradient(to top, transparent 0%, black 15%),
+          linear-gradient(
+            to right,
+            transparent 0%,
+            black 12%,
+            black 88%,
+            transparent 100%
+          );
+
+        -webkit-mask-composite: source-in;
+        mask-composite: intersect;
+      }
       .hero-photo-block::before,
       .hero-photo-block::after {
         content: "";
@@ -1232,10 +1248,7 @@
     <section class="hero" id="home">
       <!-- Photo with background removed, gently faded into the page on the edges -->
       <div class="hero-photo-block">
-        <img
-          src="hero.png"alt="Afeli Yao Bienvenu"
-          loading="eager"
-        />
+        <img src="hero.png" alt="Afeli Yao Bienvenu" loading="eager" />
         <div class="photo-bottom-fade"></div>
       </div>
 
@@ -1342,9 +1355,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="mapket.png"alt="MAPKET"
-              />
+              <img src="mapket.png" alt="MAPKET" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1384,9 +1395,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="kredai.png"alt="KRED AI"
-              />
+              <img src="kredai.png" alt="KRED AI" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1424,9 +1433,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="haven.png"alt="Haven Bible Chat"
-              />
+              <img src="haven.png" alt="Haven Bible Chat" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1471,9 +1478,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="bibliotech.png" alt="BiblioTech"
-              />
+              <img src="bibliotech.png" alt="BiblioTech" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1524,9 +1529,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="vyrto.png" alt="Vyrto Store"
-              />
+              <img src="vyrto.png" alt="Vyrto Store" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1571,9 +1574,7 @@
               rel="noopener"
               style="display: block"
             >
-              <img
-                src="assigame.png" alt="Assigame"
-              />
+              <img src="assigame.png" alt="Assigame" />
             </a>
             <div class="pcard-body">
               <div class="pcard-top">
@@ -1583,9 +1584,8 @@
                 </div>
               </div>
               <p class="pcard-desc">
-                Plateforme e-commerce complete et securisee 
-              dotee d'une architecture moderne 
-              Client-Serveur pour le marche togolais.
+                Plateforme e-commerce complete et securisee dotee d'une
+                architecture moderne Client-Serveur pour le marche togolais.
               </p>
               <div class="pcard-tags">
                 <span class="ptag">Next.js</span
@@ -1600,13 +1600,13 @@
                   >Demo live &rarr;</a
                 >
                 <a
-                  href="https://github.com/Afeliyb/assigame-front"
+                  href="https://github.com/Afeliyb/assigame-frontend"
                   target="_blank"
                   class="plink plink-gh"
                   >Front &rarr;</a
                 >
                 <a
-                  href="https://github.com/Afeliyb/assigame-back"
+                  href="https://github.com/Afeliyb/assigame-backend"
                   target="_blank"
                   class="plink plink-gh"
                   >Back &rarr;</a
