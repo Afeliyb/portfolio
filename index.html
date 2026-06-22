@@ -24,10 +24,11 @@
       // Applique le thème AVANT le premier rendu pour éviter le flash
       (function () {
         const saved = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (saved === "dark" || (!saved && prefersDark)) {
+        // Si l'utilisateur a explicitement cliqué sur la lune auparavant, on met le mode sombre
+        if (saved === "dark") {
           document.documentElement.classList.add("dark");
         }
+        // Sinon, on ne fait rien (ce qui laisse le mode clair par défaut)
       })();
     </script>
 
